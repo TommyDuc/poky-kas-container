@@ -11,13 +11,15 @@ Building the container
 ---------------------
 
 ```bash
-./build_image ubuntu-18.04 2.6.2
+./build_image.sh ubuntu-18.04 2.6.2
 ```
 
-__NOTE__:
-- CI/CD: work in progress
-- Docker Hub (Open Source): __work in progress__
-  - Docker image is not currently available in Docker Hub (WIP)
+Deopling the container
+---------------------
+
+```bash
+./deploy_image.sh ubuntu-18.04 2.6.2
+```
 
 Running the container
 ---------------------
