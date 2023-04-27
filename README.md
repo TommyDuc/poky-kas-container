@@ -63,17 +63,17 @@ point.
     to run a container for the first time would be:
 
     ```bash
-    docker run --rm -it -v /home/myuser/mystuff:/workdir dimonoff/crops/poky/kas:ubuntu-18.04-kas-2.6.2 --workdir=/workdir kas shell meta-custom/kas/kas-project.yml
+    docker run --rm -it -v /home/myuser/mystuff:/workdir dimonoff/poky-kas-container:ubuntu-20.04-kas-3.2.3 --workdir=/workdir kas shell meta-custom/kas/kas-project.yml
     ```
     or, if you have SELinux in enforcing mode:
     ```bash
-    docker run --rm -it -v /home/myuser/mystuff:/workdir:Z dimonoff/crops/poky/kas:ubuntu-18.04-kas-2.6.2 --workdir=/workdir kas shell meta-custom/kas/kas-project.yml
+    docker run --rm -it -v /home/myuser/mystuff:/workdir:Z dimonoff/poky-kas-container:ubuntu-20.04-kas-3.2.3 --workdir=/workdir kas shell meta-custom/kas/kas-project.yml
     ```
     
   * **Windows/Mac**
   
     ```bash
-    docker run --rm -it -v myvolume:/workdir dimonoff/crops/poky/kas:ubuntu-18.04-kas-2.6.2 --workdir=/workdir kas shell meta-custom/kas/kas-projet.yml
+    docker run --rm -it -v myvolume:/workdir dimonoff/poky-kas-container:ubuntu-20.04-kas-3.2.3 --workdir=/workdir kas shell meta-custom/kas/kas-projet.yml
     ```
 
   Let's discuss the options:
