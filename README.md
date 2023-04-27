@@ -1,27 +1,33 @@
-Poky Container
+Poky Kas Container
 ========================
-This repo is to create an image that is able to run bitbake/poky/kas. The main
-difference between it and [crops/poky-container](https://github.com/crops/poky-container) is that it has [kas](https://github.com/siemens/kas). This is so that
-the build process can call [kas](https://github.com/siemens/kas).
 
-- Container has helpers to create users and groups within the container
+This project is a repository that generates a Docker image using the poky-container and kas tools. The generated Docker image can be used for building and testing various software projects.
+
+Background
+---------------------
+
+Poky is a reference distribution of the Yocto Project, an open-source project for building custom Linux-based operating systems. Poky provides a set of tools and recipes for building Linux distributions targeting various hardware architectures and use cases.
+
+Poky-container is a tool for running Poky inside a Docker container, which allows developers to easily set up a consistent and isolated development environment.
+
+KAS is a tool for automating the setup and configuration of Yocto Project builds. It provides a declarative configuration file format and a set of plugins for configuring the build environment.
 
 
-Building the container
+Build container
 ---------------------
 
 ```bash
 ./build_image.sh ubuntu-18.04 2.6.2
 ```
 
-Deopling the container
+Deploy container
 ---------------------
 
 ```bash
 ./deploy_image.sh ubuntu-18.04 2.6.2
 ```
 
-Running the container
+Run container
 ---------------------
 Here a very simple but usable scenario for using the container is described.
 It is by no means the *only* way to run the container, but is a great starting
