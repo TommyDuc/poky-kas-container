@@ -32,6 +32,7 @@ RUN apt-get update && \
     xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev \
     pylint python3-setuptools python3-wheel python3-yaml python3-distro python3-jsonschema python3-newt \
     awscli \
+    zip \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
