@@ -17,10 +17,9 @@
 # specify the BASE_DISTRO. This should hopefully prevent accidentally using
 # a default, when another distro was desired.
 
-ARG DISTRO_CROPS_POKY=ubuntu-18.04
+ARG DISTRO_CROPS_POKY
 
-
-FROM crops/poky:${DISTRO_CROPS_POKY}
+FROM "docker.io/crops/poky:${DISTRO_CROPS_POKY:?}"
 
 LABEL org.opencontainers.image.authors="wbonetti@dimonoff.com"
 LABEL maintainer="wbonetti@dimonoff.com"
@@ -36,9 +35,9 @@ RUN apt-get update && \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ARG KAS_VERSION=2.6.2
+ARG KAS_VERSION
 
-RUN pip3 install kas==${KAS_VERSION}
+RUN pip3 install "kas==${KAS_VERSION:?}"
 
 USER usersetup
 ENV LANG=en_US.UTF-8
