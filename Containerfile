@@ -30,7 +30,7 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
     python3 python3-pip python3-pexpect \
     xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev \
-    pylint3 python3-setuptools python3-wheel python3-yaml python3-distro python3-jsonschema python3-newt \
+    pylint python3-setuptools python3-wheel python3-yaml python3-distro python3-jsonschema python3-newt \
     awscli \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
