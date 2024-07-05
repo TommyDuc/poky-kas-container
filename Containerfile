@@ -21,8 +21,8 @@ ARG DISTRO_CROPS_POKY
 
 FROM "docker.io/crops/poky:${DISTRO_CROPS_POKY:?}"
 
-LABEL org.opencontainers.image.authors="wbonetti@dimonoff.com"
-LABEL maintainer="wbonetti@dimonoff.com"
+LABEL org.opencontainers.image.authors="rgauthier@dimonoff.com"
+LABEL maintainer="rgauthier@dimonoff.com"
 
 USER root
 
