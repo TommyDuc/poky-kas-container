@@ -1,2 +1,5 @@
 # Direnv cache when using nix develop through direnv
 /.direnv/
+
+# Dotenv file that specifies the image build variables
+/.env
