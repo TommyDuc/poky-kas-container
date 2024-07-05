@@ -1,0 +1,2 @@
+# Direnv cache when using nix develop through direnv
+/.direnv/
