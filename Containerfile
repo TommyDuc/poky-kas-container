@@ -33,6 +33,7 @@ RUN apt-get update && \
     pylint python3-setuptools python3-wheel python3-yaml python3-distro python3-jsonschema python3-newt \
     awscli \
     zip \
+    bash-completion \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
