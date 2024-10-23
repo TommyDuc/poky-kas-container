@@ -130,6 +130,9 @@ $ just image-publish
 # ..
 ```
 
+Upon success, a new `${DISTRO_CROPS_POKY}-kas-${KAS_VERSION}${IMAGE_SUFFIX}` tag
+of the image should have been published [here][poky-kas-container-tags]. Please
+refer to your `.env` file for the expanded version of the above tag variables.
 
 ### Tag the repository
 
@@ -139,6 +142,8 @@ $ just git-tag
 $ git push --tags
 # ..
 ```
+
+The git tag will be identical to that of the published image.
 
 ### Advanced
 
@@ -298,3 +303,4 @@ repository][repo-poky-container] this work is based upon.
 [repo-poky-container]: https://github.com/crops/poky-container
 [crops-poky-tags]: https://hub.docker.com/r/crops/poky/tags
 [kas-package-versions]: https://pypi.org/project/kas/#history
+[poky-kas-container-tags]: https://hub.docker.com/r/dimonoff/poky-kas-container/tags
