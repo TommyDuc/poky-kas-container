@@ -65,6 +65,12 @@ A couple of things to know:
     upstream [crops/poky-container][repo-poky-container] and effectively refers
     to the [*tag* of the *base container image*][crops-poky-tags] we build upon.
 
+    Note that as we only maintain a single [`./Containerfile`][container-file]
+    that assumes the `apt` *package manager* and possibly some form of *Ubuntu*
+    distro landscape, using a `ubuntu-*` tagged base image might be your only
+    choice. It is also possible that some *Ubuntu* base image won't work because
+    of changes in packages, configurations or other factors.
+
  -  `KAS_VERSION`: This corresponds to the [*version* of the pypi kas
     package][kas-package-versions] that will be installed in our image via `pip3
     install`.
@@ -302,5 +308,6 @@ repository][repo-poky-container] this work is based upon.
 
 [repo-poky-container]: https://github.com/crops/poky-container
 [crops-poky-tags]: https://hub.docker.com/r/crops/poky/tags
+[container-file]: ./Containerfile
 [kas-package-versions]: https://pypi.org/project/kas/#history
 [poky-kas-container-tags]: https://hub.docker.com/r/dimonoff/poky-kas-container/tags
