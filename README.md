@@ -111,12 +111,6 @@ Same principle applies for other tasks.
 
 [podman]: https://podman.io/
 
-## Publish the container image
-
-```bash
-$ just image-publish
-# ..
-```
 
 ## Run the container
 
@@ -124,6 +118,25 @@ Basically should be as simple as:
 
 ```bash
 $ just run
+# ..
+```
+
+## Releasing
+
+### Publish the container image
+
+```bash
+$ just image-publish
+# ..
+```
+
+
+### Tag the repository
+
+```bash
+$ just git-tag
+# ..
+$ git push --tags
 # ..
 ```
 
@@ -283,3 +296,5 @@ Please note that license was inherited from the [`poky-container`
 repository][repo-poky-container] this work is based upon.
 
 [repo-poky-container]: https://github.com/crops/poky-container
+[crops-poky-tags]: https://hub.docker.com/r/crops/poky/tags
+[kas-package-versions]: https://pypi.org/project/kas/#history
