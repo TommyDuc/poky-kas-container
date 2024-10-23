@@ -29,7 +29,7 @@ USER root
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
     python3 python3-pip python3-pexpect \
-    xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev \
+    xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev libgnutls28-dev \
     pylint python3-setuptools python3-wheel python3-yaml python3-distro python3-jsonschema python3-newt \
     awscli \
     zip \
