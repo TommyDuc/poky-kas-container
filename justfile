@@ -101,3 +101,12 @@ env-file-clean:
     @rm -f "{{ repo_root }}/.env"
 
 env-file-reset: env-file-clean env-file
+
+
+git-tag dist=img_dist kas=img_kas sfx=img_sfx: init
+    @. "{{ dotenv }}" && \
+    img_dist="{{ dist }}" && \
+    img_kas="{{ kas }}" && \
+    img_sfx="{{ sfx }}" && \
+    img_tag="${img_dist}-kas-${img_kas}${img_sfx}" && \
+    git tag "${img_tag}"
