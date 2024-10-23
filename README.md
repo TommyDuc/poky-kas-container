@@ -55,8 +55,24 @@ Then, make sure that the version of each target component is as expected in the
 ```bash
 $ cat ./.env
 DISTRO_CROPS_POKY="ubuntu-XX.YY"
-KAS_VERSION="X.Y" 
+KAS_VERSION="X.Y"
+IMAGE_SUFFIX="-rev1"
 ```
+
+A couple of things to know:
+
+ -  `DISTRO_CROPS_POKY`: This corresponds to a distribution supported by
+    upstream [crops/poky-container][repo-poky-container] and effectively refers
+    to the [*tag* of the *base container image*][crops-poky-tags] we build upon.
+
+ -  `KAS_VERSION`: This corresponds to the [*version* of the pypi kas
+    package][kas-package-versions] that will be installed in our image via `pip3
+    install`.
+
+ -  `IMAGE_SUFFIX`: Can be used as a mean to differentiate between image
+    releases when the based distro and kas remain unchanged but the image's
+    configuration actually is (e.g.: adding a extra package, changing a
+    configuration file, etc.).
 
 Note that at any time, you can *reset* your `.env` file from the versioned
 [`.env.example` template][dotenv-template] as follow:
