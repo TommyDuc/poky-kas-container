@@ -23,11 +23,14 @@ cli_run_extra_opts_podman := "--userns=keep-id:uid=1000,gid=100"
 cli_run_extra_opts_default := ""
 
 # Use the dotenv / env value by default.
-# Override as follow: `$ just image_distro=my-distro-tag image`.
-image_distro := "${DISTRO_CROPS_POKY:?}"
+# Override as follow: `$ just img_dist=my-distro-tag image`.
+img_dist := "${DISTRO_CROPS_POKY:?}"
 # Use the dotenv / env value by default.
-# Override as follow: `$ just image_kas=my-kas-version image`.
-image_kas := "${KAS_VERSION:?}"
+# Override as follow: `$ just img_kas=my-kas-version image`.
+img_kas := "${KAS_VERSION:?}"
+# Use the dotenv / env value by default.
+# Override as follow: `$ just img_sfx=-my-distro-variant-suffix image`.
+img_sfx := "${IMAGE_SUFFIX:-}"
 
 default: image
 
@@ -41,15 +44,16 @@ login:
 logout:
     @{{ cli_exe }} logout "{{ registry_name }}"
 
-image distro=image_distro kas=image_kas: init
+image dist=img_dist kas=img_kas sfx=img_sfx: init
     @. "{{ dotenv }}" && \
-    DISTRO_CROPS_POKY="{{ distro }}" && \
-    KAS_VERSION="{{ kas }}" && \
-    image_tag="${DISTRO_CROPS_POKY}-kas-${KAS_VERSION}" && \
+    img_dist="{{ dist }}" && \
+    img_kas="{{ kas }}" && \
+    img_sfx="{{ sfx }}" && \
+    img_tag="${img_dist}-kas-${img_kas}${img_sfx}" && \
     {{ cli_exe }} build \
-      --build-arg "DISTRO_CROPS_POKY=${DISTRO_CROPS_POKY}" \
-      --build-arg "KAS_VERSION=${KAS_VERSION}" \
-      --tag "{{ image_fqn }}:${image_tag}" \
+      --build-arg "DISTRO_CROPS_POKY=${img_dist}" \
+      --build-arg "KAS_VERSION=${img_kas}" \
+      --tag "{{ image_fqn }}:${img_tag}" \
       --file "Containerfile" \
       "{{ repo_root }}"
 
@@ -58,24 +62,26 @@ image-clean: run-clean
     | sort | uniq \
     | xargs --no-run-if-empty {{ cli_exe }} rmi -f
 
-image-publish distro=image_distro kas=image_kas: (image distro kas)
+image-publish dist=img_dist kas=img_kas sfx=img_sfx: (image dist kas sfx)
     @. "{{ dotenv }}" && \
-    DISTRO_CROPS_POKY="{{ distro }}" && \
-    KAS_VERSION="{{ kas }}" && \
-    image_tag="${DISTRO_CROPS_POKY}-kas-${KAS_VERSION}" && \
-    {{ cli_exe }} push "{{ image_fqn }}:${image_tag}"
+    img_dist="{{ dist }}" && \
+    img_kas="{{ kas }}" && \
+    img_sfx="{{ sfx }}" && \
+    img_tag="${img_dist}-kas-${img_kas}${img_sfx}" && \
+    {{ cli_exe }} push "{{ image_fqn }}:${img_tag}"
 
-run cmd=cntr_cmd distro=image_distro kas=image_kas: (image distro kas)
+run cmd=cntr_cmd dist=img_dist kas=img_kas sfx=img_sfx: (image dist kas sfx)
     @. "{{ dotenv }}" && \
-    DISTRO_CROPS_POKY="{{ distro }}" && \
-    KAS_VERSION="{{ kas }}" && \
-    image_tag="${DISTRO_CROPS_POKY}-kas-${KAS_VERSION}" && \
+    img_dist="{{ dist }}" && \
+    img_kas="{{ kas }}" && \
+    img_sfx="{{ sfx }}" && \
+    img_tag="${img_dist}-kas-${img_kas}${img_sfx}" && \
     {{ cli_exe }} run -it --rm \
       --mount "type=bind,source={{ repo_root }},target={{ cntr_repo_root }}" \
       --name "{{ cntr_name }}" \
       --workdir="{{ cntr_repo_root }}" \
       {{ cli_run_extra_opts }} \
-      "{{ image_fqn }}:${image_tag}" \
+      "{{ image_fqn }}:${img_tag}" \
       {{ cmd }}
 
 run-clean:
